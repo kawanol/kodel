@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>お知らせ | 光機能デバイス研究室</title>
+  <meta name="description" content="近畿大学 理工学部・電気電子通信工学科 光機能デバイス研究室のお知らせ一覧です。">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="site-logo">
+        <img src="images/logo.jpg" alt="光機能デバイス研究室ロゴ">
+      </a>
+
+      <div class="site-title-group">
+        <p class="site-title">光機能デバイス研究室</p>
+        <p class="site-subtitle">近畿大学 理工学部・電気電子通信工学科</p>
+      </div>
+
+      <nav class="global-nav" aria-label="グローバルナビゲーション">
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="news.html" aria-current="page">お知らせ</a></li>
+          <li><a href="research.html">研究内容</a></li>
+          <li><a href="members.html">メンバー</a></li>
+          <li><a href="publications.html">業績</a></li>
+          <li><a href="gallery.html">フォトギャラリー</a></li>
+          <li><a href="access.html">アクセス</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-header section">
+      <div class="container">
+        <h1>お知らせ</h1>
+        <p>光機能デバイス研究室からのお知らせを掲載しています。</p>
+      </div>
+    </section>
+
+    <section class="news section">
+      <div class="container">
+        <ul class="news-list" id="all-news-list">
+          <li>お知らせを読み込んでいます。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>近畿大学 光機能デバイス研究室</p>
+      <p>理工学部 電気電子通信工学科</p>
+      <p>〒577-8502 大阪府東大阪市小若江3-4-1 31号館 2F</p>
+      <p>E-mail: kawano [ａｔ] ele.kindai.ac.jp</p>
+      <p class="copyright">© Kindai University Optoelectronic Devices Laboratory (KODel)</p>
+    </div>
+  </footer>
+
+  <script src="news/news.js"></script>
+  <script>
+    const allNewsList = document.getElementById("all-news-list");
+
+    if (allNewsList && typeof newsItems !== "undefined" && Array.isArray(newsItems)) {
+      allNewsList.innerHTML = "";
+
+      newsItems.forEach((item) => {
+        const li = document.createElement("li");
+
+        const time = document.createElement("time");
+        time.setAttribute("datetime", item.datetime);
+        time.textContent = item.date;
+
+        const link = document.createElement("a");
+        link.href = item.url;
+        link.textContent = item.title;
+
+        li.appendChild(time);
+        li.appendChild(link);
+        allNewsList.appendChild(li);
+      });
+    } else if (allNewsList) {
+      allNewsList.innerHTML = "";
+      const li = document.createElement("li");
+      li.textContent = "お知らせを読み込めませんでした。";
+      allNewsList.appendChild(li);
+    }
+  </script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
