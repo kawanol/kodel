@@ -1,4 +1,10 @@
 const newsItems = [
+   {
+    date: "2026/06/11",
+    datetime: "2026-06-11",
+    title: "研究室に実験装置を搬入しました",
+    url: "news/20260611-lab-moving.html"
+  },
   {
     date: "2026/04/20",
     datetime: "2026-04-20",
