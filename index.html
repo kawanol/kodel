@@ -59,29 +59,19 @@
       </div>
     </section>
 
-    <section class="news section">
-      <div class="container">
-        <h2>お知らせ</h2>
-        <ul class="news-list">
-          <li>
-            <time datetime="2026-04-20">2026/04/20</time>
-            <a href="news/20260420-website-open.html">研究室のホームページを開設しました</a>
-          </li>
-          <li>
-            <time datetime="2026-04-08">2026/04/08</time>
-            <a href="news/20260408-new-members.html">新メンバーが配属されました</a>
-          </li>
-          <li>
-          <time datetime="2026-04-02">2026/04/02</time>
-          <a href="news/20260402-lab-signboard.html">研究室の看板をいただきました</a>
-          </li>
-          <li>
-            <time datetime="2026-04-01">2026/04/01</time>
-            <a href="news/20260401-lab-start.html">研究室が発足しました</a>
-          </li>
-        </ul>
-      </div>
-    </section>
+<section class="news section">
+  <div class="container">
+    <h2>お知らせ</h2>
+
+    <ul class="news-list" id="latest-news-list">
+      <!-- data/news.js から最新3件を自動表示 -->
+    </ul>
+
+    <p class="section-link">
+      <a href="news.html" class="button-link">お知らせ一覧を見る</a>
+    </p>
+  </div>
+</section>
 
     <section class="research-summary section">
       <div class="container">
@@ -148,5 +138,22 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="data/news.js"></script>
+<script>
+  const latestNewsList = document.getElementById("latest-news-list");
+
+  if (latestNewsList && typeof newsItems !== "undefined") {
+    newsItems.slice(0, 3).forEach((item) => {
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        <time datetime="${item.datetime}">${item.date}</time>
+        <a href="${item.url}">${item.title}</a>
+      `;
+
+      latestNewsList.appendChild(li);
+    });
+  }
+</script>
 </body>
 </html>
