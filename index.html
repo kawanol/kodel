@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ホーム | 光機能デバイス研究室</title>
   <meta name="description" content="近畿大学 理工学部・電気電子通信工学科 光機能デバイス研究室のホームページです。研究内容、お知らせ、フォトギャラリーなどを掲載しています。">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
@@ -21,7 +24,8 @@
 
       <nav class="global-nav" aria-label="グローバルナビゲーション">
         <ul>
-          <li><a href="index.html">ホーム</a></li>
+          <li><a href="index.html" aria-current="page">ホーム</a></li>
+          <li><a href="news.html">お知らせ</a></li>
           <li><a href="research.html">研究内容</a></li>
           <li><a href="members.html">メンバー</a></li>
           <li><a href="publications.html">業績</a></li>
@@ -36,7 +40,7 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-text">
-          <p class="lab-name-en">Optoelectrical device laboratory</p>
+          <p class="lab-name-en">Optoelectronic Devices Laboratory (KODel)</p>
           <h1>光機能デバイス研究室</h1>
           <p class="catchcopy">光機能デバイスを通じて社会に貢献</p>
         </div>
@@ -50,28 +54,30 @@
     <section class="about section">
       <div class="container">
         <h2>研究室紹介</h2>
+
         <p>太陽電池など、光機能素子の研究を行っています。</p>
         <p>薄膜化合物太陽電池、有機無機混合ハライド(ペロブスカイト)太陽電池、シリコン太陽電池モジュールといった素子が中心です。</p>
         <p>太陽電池の作製の他、太陽電池モジュールのリサイクル、屋外での太陽電池モジュールの実証試験を行っています。</p>
+
         <p class="section-link">
           <a href="research.html" class="button-link">研究内容を見る</a>
         </p>
       </div>
     </section>
 
-<section class="news section">
-  <div class="container">
-    <h2>お知らせ</h2>
+    <section class="news section">
+      <div class="container">
+        <h2>お知らせ</h2>
 
-    <ul class="news-list" id="latest-news-list">
-      <!-- data/news.js から最新3件を自動表示 -->
-    </ul>
+        <ul class="news-list" id="latest-news-list">
+          <li>お知らせを読み込んでいます。</li>
+        </ul>
 
-    <p class="section-link">
-      <a href="news.html" class="button-link">お知らせ一覧を見る</a>
-    </p>
-  </div>
-</section>
+        <p class="section-link">
+          <a href="news.html" class="button-link">お知らせ一覧を見る</a>
+        </p>
+      </div>
+    </section>
 
     <section class="research-summary section">
       <div class="container">
@@ -137,23 +143,36 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
   <script src="data/news.js"></script>
-<script>
-  const latestNewsList = document.getElementById("latest-news-list");
+  <script>
+    const latestNewsList = document.getElementById("latest-news-list");
 
-  if (latestNewsList && typeof newsItems !== "undefined") {
-    newsItems.slice(0, 3).forEach((item) => {
+    if (latestNewsList && typeof newsItems !== "undefined" && Array.isArray(newsItems)) {
+      latestNewsList.innerHTML = "";
+
+      newsItems.slice(0, 3).forEach((item) => {
+        const li = document.createElement("li");
+
+        const time = document.createElement("time");
+        time.setAttribute("datetime", item.datetime);
+        time.textContent = item.date;
+
+        const link = document.createElement("a");
+        link.href = item.url;
+        link.textContent = item.title;
+
+        li.appendChild(time);
+        li.appendChild(link);
+        latestNewsList.appendChild(li);
+      });
+    } else if (latestNewsList) {
+      latestNewsList.innerHTML = "";
       const li = document.createElement("li");
-
-      li.innerHTML = `
-        <time datetime="${item.datetime}">${item.date}</time>
-        <a href="${item.url}">${item.title}</a>
-      `;
-
+      li.textContent = "お知らせを読み込めませんでした。";
       latestNewsList.appendChild(li);
-    });
-  }
-</script>
+    }
+  </script>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
