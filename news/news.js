@@ -1,4 +1,22 @@
 const newsItems = [
+      {
+    date: "2026/09/14",
+    datetime: "2026-09-14",
+    title: "研究室見学について",
+    url: "news/20260914-lab-open.html"
+  },
+   {
+    date: "2026/07/17",
+    datetime: "2026-07-17",
+    title: "研究室の取材がありました",
+    url: "news/20260717-lab-interview.html"
+  },  
+   {
+    date: "2026/06/06",
+    datetime: "2026-06-06",
+    title: "テレビに出演しました",
+    url: "news/20260606-pi-interview.html"
+  },
    {
     date: "2026/06/11",
     datetime: "2026-06-11",
